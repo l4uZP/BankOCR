@@ -6,30 +6,19 @@ import (
 )
 
 func OCRToString(OCRNumber string) string {
-	var num string
-	switch OCRNumber {
-	case " _ | ||_|":
-		num = "0"
-	case "     |  |":
-		num = "1"
-	case " _  _||_ ":
-		num = "2"
-	case " _  _| _|":
-		num = "3"
-	case "   |_|  |":
-		num = "4"
-	case " _ |_  _|":
-		num = "5"
-	case " _ |_ |_|":
-		num = "6"
-	case " _   |  |":
-		num = "7"
-	case " _ |_||_|":
-		num = "8"
-	case " _ |_| _|":
-		num = "9"
+	numbers := map[string]string{
+		" _ | ||_|": "0",
+		"     |  |": "1",
+		" _  _||_ ": "2",
+		" _  _| _|": "3",
+		"   |_|  |": "4",
+		" _ |_  _|": "5",
+		" _ |_ |_|": "6",
+		" _   |  |": "7",
+		" _ |_||_|": "8",
+		" _ |_| _|": "9",
 	}
-	return num
+	return numbers[OCRNumber]
 }
 
 func DivideChain(c string) [][]string {
