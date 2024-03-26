@@ -25,10 +25,23 @@ func DivideChain(c string) [][]string {
 	lines := strings.Split(c, "\n")
 	var digits [][]string
 
-	for i, _ := range digits {
-		digits[i] = make([]string, len(lines[0])/3)
-		fmt.Println(digits[i])
+	for _, line := range lines {
+		splitIntoArrays(line)
 	}
 
 	return digits
+}
+
+func splitIntoArrays(line string) []string {
+	var result []string
+
+	for i := 0; i < len(line); i += 3 {
+		end := i + 3
+		if end > len(line) {
+			end = len(line)
+		}
+		result = append(result, line[i:end])
+	}
+	fmt.Println(result)
+	return result
 }
