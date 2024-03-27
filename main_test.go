@@ -1,9 +1,10 @@
 package main
 
 import (
-	. "gopkg.in/check.v1"
 	"strconv"
 	"testing"
+
+	. "gopkg.in/check.v1"
 )
 
 func Test(t *testing.T) { TestingT(t) }
@@ -29,22 +30,22 @@ func (b *BankOCRSuite) Test_OCRToString_TransformChainsOfAisolatedSymbolsToItsCo
 }
 
 func (b *BankOCRSuite) Test_DivideChain_ExtractTheNecessaryElementsForEachNumber(c *C) {
-	an := ` _  _  _  _  _  _  _  _  _
+	an := ` _  _  _  _  _  _  _  _  _ 
 | || || || || || || || || |
 |_||_||_||_||_||_||_||_||_|
                            `
 
 	result := DivideChain(an)
-	c.Assert(result, DeepEquals, [][]string{
-		{" _ | ||_|"},
-		{" _ | ||_|"},
-		{" _ | ||_|"},
-		{" _ | ||_|"},
-		{" _ | ||_|"},
-		{" _ | ||_|"},
-		{" _ | ||_|"},
-		{" _ | ||_|"},
-		{" _ | ||_|"},
+	c.Assert(result, DeepEquals, []string{
+		" _ | ||_|",
+		" _ | ||_|",
+		" _ | ||_|",
+		" _ | ||_|",
+		" _ | ||_|",
+		" _ | ||_|",
+		" _ | ||_|",
+		" _ | ||_|",
+		" _ | ||_|",
 	})
 }
 

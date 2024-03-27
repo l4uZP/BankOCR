@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"strings"
 )
 
@@ -21,12 +20,25 @@ func OCRToString(OCRNumber string) string {
 	return numbers[OCRNumber]
 }
 
-func DivideChain(c string) [][]string {
+func DivideChain(c string) []string {
 	lines := strings.Split(c, "\n")
-	var digits [][]string
+	var digits []string
 
-	for _, line := range lines {
-		splitIntoArrays(line)
+	for i, line := range lines {
+		spliteds := splitIntoArrays(line)
+
+		for _, _ = range spliteds {
+			if i == 0 {
+				digits = append(digits, "")
+			}
+		}
+
+		for j, splited := range spliteds {
+			if i < 3 {
+				digits[j] = digits[j] + splited
+			}
+		}
+
 	}
 
 	return digits
@@ -42,6 +54,5 @@ func splitIntoArrays(line string) []string {
 		}
 		result = append(result, line[i:end])
 	}
-	fmt.Println(result)
 	return result
 }
