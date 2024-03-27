@@ -25,15 +25,15 @@ func DivideChain(c string) []string {
 	var digits []string
 
 	for i, line := range lines {
-		spliteds := splitIntoArrays(line)
+		splitedLines := splitIntoArrays(line)
 
-		for _, _ = range spliteds {
+		for range splitedLines {
 			if i == 0 {
 				digits = append(digits, "")
 			}
 		}
 
-		for j, splited := range spliteds {
+		for j, splited := range splitedLines {
 			if i < 3 {
 				digits[j] = digits[j] + splited
 			}
