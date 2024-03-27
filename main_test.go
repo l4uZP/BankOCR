@@ -46,22 +46,19 @@ func (b *BankOCRSuite) Test_DivideChain_ExtractTheNecessaryElementsForEachNumber
 	})
 }
 
-// func (b *BankOCRSuite) Test_DivideChain_ExtractTheNecessaryElementsForOtherNumbers(c *C) {
-// 	an := `    _  _     _  _  _  _  _
-//   | _| _||_||_ |_   ||_||_|
-//   ||_  _|  | _||_|  ||_| _|
-//                                 `
+func (b *BankOCRSuite) Test_DivideChain_ExtractTheNecessaryElementsForOtherNumbers(c *C) {
+	an := "    _  _     _  _  _  _  _ \n  | _| _||_||_ |_   ||_||_|\n  ||_  _|  | _||_|  ||_| _|\n                                "
 
-// 	result := DivideChain(an)
-// 	c.Assert(result, DeepEquals, [][]string{
-// 		{"     |  |"},
-// 		{" _  _||_ "},
-// 		{" _  _| _|"},
-// 		{"   |_|  |"},
-// 		{" _ |_  _|"},
-// 		{" _ |_ |_|"},
-// 		{" _   |  |"},
-// 		{" _ |_||_|"},
-// 		{" _ |_| _|"},
-// 	})
-// }
+	result := DivideChain(an)
+	c.Assert(result, DeepEquals, []string{
+		"     |  |",
+		" _  _||_ ",
+		" _  _| _|",
+		"   |_|  |",
+		" _ |_  _|",
+		" _ |_ |_|",
+		" _   |  |",
+		" _ |_||_|",
+		" _ |_| _|",
+	})
+}
