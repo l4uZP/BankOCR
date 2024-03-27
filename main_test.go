@@ -91,7 +91,7 @@ func (b *BankOCRSuite) Test_isValidAccount_WorksWithAnotherBasicExample(c *C) {
 	c.Assert(result, Equals, true)
 }
 
-func (b *BankOCRSuite) Test_isValidAccount_ReturnsFalseWhenNumberAccountIsNotCorrect(c *C) {
+func (b *BankOCRSuite) Test_isValidAccount_ReturnsFalseWhenAccountNumberIsNotCorrect(c *C) {
 	an := "345831868"
 
 	result := isValidAccount(an)
