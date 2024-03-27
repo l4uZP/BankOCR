@@ -76,3 +76,24 @@ func (b *BankOCRSuite) Test_ParseAccountNumber_TestWithAChainOfZeros(c *C) {
 	result := ParseAccountNumber(an)
 	c.Assert(result, Equals, "000000000")
 }
+
+func (b *BankOCRSuite) Test_isValidAccount_WorksWithBasicExample(c *C) {
+	an := "345882865"
+
+	result := isValidAccount(an)
+	c.Assert(result, Equals, true)
+}
+
+func (b *BankOCRSuite) Test_isValidAccount_WorksWithAnotherBasicExample(c *C) {
+	an := "345832868"
+
+	result := isValidAccount(an)
+	c.Assert(result, Equals, true)
+}
+
+func (b *BankOCRSuite) Test_isValidAccount_ReturnsFalseWhenNumberAccountIsNotCorrect(c *C) {
+	an := "345831868"
+
+	result := isValidAccount(an)
+	c.Assert(result, Equals, false)
+}

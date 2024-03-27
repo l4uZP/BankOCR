@@ -65,3 +65,7 @@ func ParseAccountNumber(c string) string {
 	}
 	return accountNumber
 }
+
+func isValidAccount(an string) bool {
+	return true
+}
