@@ -30,10 +30,7 @@ func (b *BankOCRSuite) Test_OCRToString_TransformChainsOfAisolatedSymbolsToItsCo
 }
 
 func (b *BankOCRSuite) Test_DivideChain_ExtractTheNecessaryElementsForEachNumber(c *C) {
-	an := ` _  _  _  _  _  _  _  _  _ 
-| || || || || || || || || |
-|_||_||_||_||_||_||_||_||_|
-                           `
+	an := " _  _  _  _  _  _  _  _  _ \n| || || || || || || || || |\n|_||_||_||_||_||_||_||_||_|\n                           "
 
 	result := DivideChain(an)
 	c.Assert(result, DeepEquals, []string{
