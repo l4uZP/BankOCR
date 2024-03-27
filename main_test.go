@@ -62,3 +62,17 @@ func (b *BankOCRSuite) Test_DivideChain_ExtractTheNecessaryElementsForOtherNumbe
 		" _ |_| _|",
 	})
 }
+
+func (b *BankOCRSuite) Test_ParseAccountNumber_WorksWithBasicExample(c *C) {
+	an := "    _  _     _  _  _  _  _ \n  | _| _||_||_ |_   ||_||_|\n  ||_  _|  | _||_|  ||_| _|\n                                "
+
+	result := ParseAccountNumber(an)
+	c.Assert(result, Equals, "123456789")
+}
+
+func (b *BankOCRSuite) Test_ParseAccountNumber_TestWithAChainOfZeros(c *C) {
+	an := " _  _  _  _  _  _  _  _  _ \n| || || || || || || || || |\n|_||_||_||_||_||_||_||_||_|\n                           "
+
+	result := ParseAccountNumber(an)
+	c.Assert(result, Equals, "000000000")
+}

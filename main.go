@@ -56,3 +56,12 @@ func splitIntoArrays(line string) []string {
 	}
 	return result
 }
+
+func ParseAccountNumber(c string) string {
+	var accountNumber string
+	numbers := DivideChain(c)
+	for _, number := range numbers {
+		accountNumber += OCRToString(number)
+	}
+	return accountNumber
+}
