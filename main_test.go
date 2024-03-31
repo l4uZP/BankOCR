@@ -111,3 +111,10 @@ func (b *BankOCRSuite) Test_isValidAccount_ReturnsFalseWhenAccountNumberHasIncor
 	c.Assert(result2, Equals, false)
 	c.Assert(result3, Equals, false)
 }
+
+func (b *BankOCRSuite) Test_ParseAccountNumber_SetsQuestionMarkWhenTheNumberIsNotRecognized(c *C) {
+	an := "    _  _  _  _  _  _     _ \n|_||_|| || ||_   |  |  | _ \n  | _||_||_||_|  |  |  | _|\n                           "
+
+	result := ParseAccountNumber(an)
+	c.Assert(result, Equals, "49006771?")
+}
