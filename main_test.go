@@ -97,3 +97,17 @@ func (b *BankOCRSuite) Test_isValidAccount_ReturnsFalseWhenAccountNumberIsNotCor
 	result := isValidAccount(an)
 	c.Assert(result, Equals, false)
 }
+
+func (b *BankOCRSuite) Test_isValidAccount_ReturnsFalseWhenAccountNumberHasIncorrectLenght(c *C) {
+	an1 := ""
+	an2 := "15882861"
+	an3 := "3458828650"
+
+	result1 := isValidAccount(an1)
+	result2 := isValidAccount(an2)
+	result3 := isValidAccount(an3)
+
+	c.Assert(result1, Equals, false)
+	c.Assert(result2, Equals, false)
+	c.Assert(result3, Equals, false)
+}

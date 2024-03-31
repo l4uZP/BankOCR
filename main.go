@@ -69,12 +69,17 @@ func ParseAccountNumber(c string) string {
 
 func isValidAccount(an string) bool {
 	numbers := strings.Split(an, "")
-	multiplier := len(numbers)
+	acountNumberLength := len(numbers)
+
+	if acountNumberLength != 9 {
+		return false
+	}
+
 	var total int
 	for _, number := range numbers {
 		cn, _ := strconv.Atoi(number)
-		total = total + multiplier*cn
-		multiplier = multiplier - 1
+		total = total + acountNumberLength*cn
+		acountNumberLength = acountNumberLength - 1
 	}
 
 	return total%11 == 0
