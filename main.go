@@ -32,7 +32,6 @@ func DivideChain(c string) []string {
 				digits[j] = digits[j] + splited
 			}
 		}
-
 	}
 
 	return digits
@@ -113,4 +112,13 @@ func setAccountStatus(account string) string {
 		status = "ILL"
 	}
 	return status
+}
+
+func ParseScannedFileToAccountsList(scannedAccounts []string) [][2]string {
+	var accountsList []string
+	for _, OCRAccount := range scannedAccounts {
+		accountNumber := ParseAccountNumber(OCRAccount)
+		accountsList = append(accountsList, accountNumber)
+	}
+	return GetAccountsWithStatus(accountsList)
 }

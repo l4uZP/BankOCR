@@ -13,13 +13,13 @@ type BankOCRSuite struct{}
 
 var _ = Suite(&BankOCRSuite{})
 
-func (b *BankOCRSuite) Test_OCRToString_TransformChainsOfAisolatedSymbolsToItsCorrectNumberZero(c *C) {
+func (b *BankOCRSuite) Test_OCRToString_TransformChainsOfAisolatedSymbolsToItsCorrectNumber_Zero(c *C) {
 	zero := " _ | ||_|"
 	result := OCRToString(zero)
 	c.Assert(result, Equals, "0")
 }
 
-func (b *BankOCRSuite) Test_OCRToString_TransformChainsOfAisolatedSymbolsToItsCorrectNumberAllNumbers(c *C) {
+func (b *BankOCRSuite) Test_OCRToString_TransformChainsOfAisolatedSymbolsToItsCorrectNumber_AllNumbers(c *C) {
 	numbers := []string{"     |  |", " _  _||_ ", " _  _| _|", "   |_|  |", " _ |_  _|", " _ |_ |_|", " _   |  |", " _ |_||_|", " _ |_| _|"}
 
 	for i, number := range numbers {
@@ -124,4 +124,15 @@ func (b *BankOCRSuite) Test_GetAccountsWithStatus_ReturnsAListOfParsedAccountNum
 
 	result := GetAccountsWithStatus(accountNumbers)
 	c.Assert(result, DeepEquals, [][2]string{{"457508000", ""}, {"664371495", "ERR"}, {"86110??36", "ILL"}})
+}
+
+func (b *BankOCRSuite) Test_ParseScannedFileToAccountsList_CompleteTheWholeFlow(c *C) {
+	scannedFile := []string{
+		" _  _  _  _  _  _  _  _    \n| || || || || || || ||_   |\n|_||_||_||_||_||_||_| _|  |\n                           ",
+		"    _  _  _  _  _  _     _ \n|_||_|| || ||_   |  |  | _ \n  | _||_||_||_|  |  |  | _|\n                           ",
+		"    _  _     _  _  _  _  _ \n  | _| _||_| _ |_   ||_||_|\n  ||_  _|  | _||_|  ||_| _ \n                           ",
+	}
+
+	results := ParseScannedFileToAccountsList(scannedFile)
+	c.Assert(results, DeepEquals, [][2]string{{"000000051", ""}, {"49006771?", "ILL"}, {"1234?678?", "ILL"}})
 }
