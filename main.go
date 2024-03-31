@@ -5,21 +5,14 @@ import (
 	"strings"
 )
 
-var numbers = map[string]string{
-	" _ | ||_|": "0",
-	"     |  |": "1",
-	" _  _||_ ": "2",
-	" _  _| _|": "3",
-	"   |_|  |": "4",
-	" _ |_  _|": "5",
-	" _ |_ |_|": "6",
-	" _   |  |": "7",
-	" _ |_||_|": "8",
-	" _ |_| _|": "9",
-}
 
-func OCRToString(OCRNumber string) string {
-	return numbers[OCRNumber]
+func ParseAccountNumber(c string) string {
+	var accountNumber string
+	numbers := DivideChain(c)
+	for _, number := range numbers {
+		accountNumber += OCRToString(number)
+	}
+	return accountNumber
 }
 
 func DivideChain(c string) []string {
@@ -59,13 +52,21 @@ func splitIntoArrays(line string) []string {
 	return result
 }
 
-func ParseAccountNumber(c string) string {
-	var accountNumber string
-	numbers := DivideChain(c)
-	for _, number := range numbers {
-		accountNumber += OCRToString(number)
-	}
-	return accountNumber
+func OCRToString(OCRNumber string) string {
+	return numbers[OCRNumber]
+}
+
+var numbers = map[string]string{
+	" _ | ||_|": "0",
+	"     |  |": "1",
+	" _  _||_ ": "2",
+	" _  _| _|": "3",
+	"   |_|  |": "4",
+	" _ |_  _|": "5",
+	" _ |_ |_|": "6",
+	" _   |  |": "7",
+	" _ |_||_|": "8",
+	" _ |_| _|": "9",
 }
 
 func isValidAccount(an string) bool {
