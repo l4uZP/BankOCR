@@ -118,3 +118,10 @@ func (b *BankOCRSuite) Test_ParseAccountNumber_SetsQuestionMarkWhenTheNumberIsNo
 	result := ParseAccountNumber(an)
 	c.Assert(result, Equals, "49006771?")
 }
+
+func (b *BankOCRSuite) Test_GetAccountsWithStatus_ReturnsAListOfParsedAccountNumbersWithItsStatus(c *C) {
+	accountNumbers := []string{"457508000", "664371495", "86110??36"}
+
+	result := GetAccountsWithStatus(accountNumbers)
+	c.Assert(result, DeepEquals, [][2]string{{"457508000", ""}, {"664371495", "ERR"}, {"86110??36", "ILL"}})
+}

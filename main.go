@@ -77,18 +77,40 @@ func isValidAccount(an string) bool {
 	return hasCorrectLenght(len(numbers)) && isValidChecksum(numbers)
 }
 
-func hasCorrectLenght(acountNumberLength int) bool {
-	return acountNumberLength == 9
+func hasCorrectLenght(accountNumberLength int) bool {
+	return accountNumberLength == 9
 }
 
 func isValidChecksum(numbers []string) bool {
 	var total int
-	acountNumberLength := len(numbers)
+	accountNumberLength := len(numbers)
 	for _, number := range numbers {
 		cn, _ := strconv.Atoi(number)
-		total = total + acountNumberLength*cn
-		acountNumberLength = acountNumberLength - 1
+		total = total + accountNumberLength*cn
+		accountNumberLength = accountNumberLength - 1
 	}
 
 	return total%11 == 0
+}
+
+func GetAccountsWithStatus(list []string) [][2]string {
+	var accountsList [][2]string
+	for _, account := range list {
+		status := setAccountStatus(account)
+		accountsList = append(accountsList, [2]string{0: account, 1: status})
+	}
+
+	return accountsList
+}
+
+func setAccountStatus(account string) string {
+	status := ""
+	if !isValidAccount(account) {
+		status = "ERR"
+	}
+
+	if strings.Contains(account, "?") {
+		status = "ILL"
+	}
+	return status
 }
