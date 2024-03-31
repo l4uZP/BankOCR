@@ -5,7 +5,6 @@ import (
 	"strings"
 )
 
-
 func ParseAccountNumber(c string) string {
 	var accountNumber string
 	numbers := DivideChain(c)
@@ -71,13 +70,16 @@ var numbers = map[string]string{
 
 func isValidAccount(an string) bool {
 	numbers := strings.Split(an, "")
-	acountNumberLength := len(numbers)
+	return hasCorrectLenght(len(numbers)) && isValidChecksum(numbers)
+}
 
-	if acountNumberLength != 9 {
-		return false
-	}
+func hasCorrectLenght(acountNumberLength int) bool {
+	return acountNumberLength == 9
+}
 
+func isValidChecksum(numbers []string) bool {
 	var total int
+	acountNumberLength := len(numbers)
 	for _, number := range numbers {
 		cn, _ := strconv.Atoi(number)
 		total = total + acountNumberLength*cn
