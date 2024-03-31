@@ -52,7 +52,11 @@ func splitIntoArrays(line string) []string {
 }
 
 func OCRToString(OCRNumber string) string {
-	return numbers[OCRNumber]
+	number := numbers[OCRNumber]
+	if number == "" {
+		return "?"
+	}
+	return number
 }
 
 var numbers = map[string]string{
